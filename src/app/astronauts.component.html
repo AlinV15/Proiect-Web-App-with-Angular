@@ -1,0 +1,78 @@
+<div *ngIf="isLoading" class="loading">
+  <div class="spinner"></div>
+  Loading...
+</div>
+
+<!-- Mesaj de eroare -->
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<!-- Tabelul cu astronauți -->
+<table *ngIf="!isLoading && !error">
+  <thead>
+    <tr>
+      <th [style.width.px]="maxCraftLength * 20">Navetă</th>
+      <!-- Header pentru navetă -->
+      <th>Astronauți</th>
+      <!-- Header pentru astronauți -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let craft of objectKeys(astronauts)">
+      <td>
+        <!-- <div class="craft-container"> -->
+        {{ craft }}
+        <!-- Iconița cu săgeată pentru ordinea de sortare -->
+        <button (click)="toggleSort(craft)" class="sort-btn">
+          <span *ngIf="sortOrder[craft]">↑</span>
+          <span *ngIf="!sortOrder[craft]">↓</span>
+        </button>
+        <!-- <span class="craft-name">{{ craft }}</span>
+          
+          <button (click)="toggleSort(craft)" class="sort-btn">
+            <span *ngIf="sortOrder[craft]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-square-chevron-down"
+              >
+                <rect width="18" height="18" x="3" y="3" rx="2" />
+                <path d="m16 10-4 4-4-4" />
+              </svg>
+            </span>
+            <span *ngIf="!sortOrder[craft]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-square-chevron-up"
+              >
+                <rect width="18" height="18" x="3" y="3" rx="2" />
+                <path d="m8 14 4-4 4 4" />
+              </svg>
+            </span>
+          </button> -->
+        <!-- </div> -->
+      </td>
+
+      <td>
+        <!-- Stilizare detaliată pentru fiecare astronaut -->
+        <div *ngFor="let name of astronauts[craft]" class="astronaut-line">
+          <span class="astronaut-name">{{ name }}</span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
