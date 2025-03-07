@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-astronauts',
+  selector: 'app-astronauts', 
   standalone: true,
   imports: [CommonModule],
   templateUrl: './astronauts.component.html',
@@ -55,20 +55,23 @@ export class AstronautsComponent implements OnInit {
   }
 
   toggleSort(craft: string): void {
-    // Schimbă ordinea de sortare pentru naveta respectivă
-    this.sortOrder[craft] = !this.sortOrder[craft];
-    this.sortAstronautsByCraft(craft);
-
+  if (this.sortOrder[craft] === undefined) {
+    this.sortOrder[craft] = true; // Inițializează sortarea în ordine descrescătoare
   }
+  this.sortOrder[craft] = !this.sortOrder[craft]; // Inversează ordinea de sortare
+  this.sortAstronautsByCraft(craft);
+}
 
-  sortAstronautsByCraft(craft: string): void {
-    const isAscending = this.sortOrder[craft]; // Dacă ordinea este crescătoare sau descrescătoare
-    const sortedNames = [...this.astronauts[craft]].sort((a, b) => {
-      return isAscending ? a.localeCompare(b) : b.localeCompare(a);
-    });
-    this.astronauts[craft] = sortedNames;
-     // Actualizează lista cu astronauți sortată
-  }
+
+ sortAstronautsByCraft(craft: string): void {
+  const isAscending = this.sortOrder[craft]; // Determină ordinea de sortare
+  this.astronauts = {
+    ...this.astronauts, // Copiază restul obiectului
+    [craft]: [...this.astronauts[craft]].sort((a, b) =>
+      isAscending ? a.localeCompare(b) : b.localeCompare(a)
+    ) // Creează o copie nouă a array-ului sortat
+  };
+}
 
   objectKeys(obj: any): string[] {
     return Object.keys(obj);
