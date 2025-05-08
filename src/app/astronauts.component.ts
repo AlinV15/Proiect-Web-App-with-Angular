@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-astronauts', 
+  selector: 'app-astronauts',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './astronauts.component.html',
@@ -16,7 +16,7 @@ export class AstronautsComponent implements OnInit {
   maxCraftLength: number = 0;
   sortOrder: { [craft: string]: boolean } = {}; // Ordinea de sortare per navetă
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.http.get<any>('http://api.open-notify.org/astros.json')
@@ -39,10 +39,16 @@ export class AstronautsComponent implements OnInit {
       if (!grouped[craft]) {
         grouped[craft] = [];
       }
-      grouped[craft].push(name); 
+      grouped[craft].push(name);
     });
 
-    Object.keys(grouped).forEach(craft => grouped[craft].sort());
+    // Sortează numele astronauților și inițializează starea de sortare
+    Object.keys(grouped).forEach(craft => {
+      grouped[craft].sort();
+      // Setează starea inițială de sortare ca true (alfabetic)
+      this.sortOrder[craft] = true;
+    });
+
     return grouped;
   }
 
@@ -55,23 +61,21 @@ export class AstronautsComponent implements OnInit {
   }
 
   toggleSort(craft: string): void {
-  if (this.sortOrder[craft] === undefined) {
-    this.sortOrder[craft] = true; // Inițializează sortarea în ordine descrescătoare
+    // Nu mai este nevoie să verificăm dacă sortOrder[craft] este undefined
+    this.sortOrder[craft] = !this.sortOrder[craft]; // Inversează ordinea de sortare
+    this.sortAstronautsByCraft(craft);
   }
-  this.sortOrder[craft] = !this.sortOrder[craft]; // Inversează ordinea de sortare
-  this.sortAstronautsByCraft(craft);
-}
 
-
- sortAstronautsByCraft(craft: string): void {
-  const isAscending = this.sortOrder[craft]; // Determină ordinea de sortare
-  this.astronauts = {
-    ...this.astronauts, // Copiază restul obiectului
-    [craft]: [...this.astronauts[craft]].sort((a, b) =>
-      isAscending ? a.localeCompare(b) : b.localeCompare(a)
-    ) // Creează o copie nouă a array-ului sortat
-  };
-}
+  sortAstronautsByCraft(craft: string): void {
+    const isAscending = this.sortOrder[craft]; // Determină ordinea de sortare
+    // console.log(this.sortOrder);
+    this.astronauts = {
+      ...this.astronauts, // Copiază restul obiectului
+      [craft]: [...this.astronauts[craft]].sort((a, b) =>
+        isAscending ? a.localeCompare(b) : b.localeCompare(a)
+      ) // Creează o copie nouă a array-ului sortat
+    };
+  }
 
   objectKeys(obj: any): string[] {
     return Object.keys(obj);
