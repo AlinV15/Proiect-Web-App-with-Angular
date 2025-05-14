@@ -1,0 +1,46 @@
+<!--Donciu Cristian-->
+<div class="page-container">
+  <h1 class="main-title">🌌 Live Astronauts Tracker</h1>
+
+  <input type="text" placeholder="🔍 Caută astronaut..." [(ngModel)]="searchTerm" class="search-input" />
+
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    Loading...
+  </div>
+  <!-- sfarsit donciu cristian-->
+  
+  <!-- Mesaj de eroare -->
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <!-- Tabelul cu astronauți -->
+  <table *ngIf="!isLoading && !error">
+    <thead>
+      <tr>
+        <th [style.width.px]="maxCraftLength * 20">Navetă</th>
+        <!-- Header pentru navetă -->
+        <th>Astronauți</th>
+        <!-- Header pentru astronauți -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let craft of objectKeys(filteredAstronauts)">
+        <td>
+          <!-- <div class="craft-container"> -->
+          {{ craft }}
+          <!-- Iconița cu săgeată pentru ordinea de sortare --> <!--Donciu Cristian-->
+          <button (click)="toggleSort(craft)" class="sort-btn">
+            <span *ngIf="sortOrder[craft]">⬇️</span>
+            <span *ngIf="!sortOrder[craft]">⬆️</span>
+          </button>
+        </td>
+        <td>
+          <!-- Stilizare detaliată pentru fiecare astronaut -->
+          <div *ngFor="let name of filteredAstronauts[craft]" class="astronaut-line">
+            <span class="astronaut-name">{{ name }}</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

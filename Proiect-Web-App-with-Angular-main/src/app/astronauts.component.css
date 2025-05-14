@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto&display=swap'); /*Donciu cristian*/
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #0a0a23, #1c1c3c);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+.page-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Titlu - Donciu Cristian*/
+.main-title {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    font-size: 36px;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+}
+
+/* Input căutare -Donciu Cristian */
+.search-input {
+    display: block;
+    margin: 0 auto 30px auto;
+    padding: 12px 20px;
+    width: 80%;
+    max-width: 400px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #ffd700;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+}
+
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+/* Antetul tabelului */
+th,
+td {
+    padding: 12px 16px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #d1d1d1;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Fundal închis pentru antet */
+    font-size: 18px;
+}
+
+td {
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Fundal pentru celule */
+}
+
+/* Astronauți */
+.astronaut-line {
+    background-color: rgba(255, 255, 255, 0.05);
+    margin: 5px 0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.astronaut-line:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Buton sortare Donciu Cristian*/
+.sort-btn {
+    margin-left: 10px;
+    background: none;
+    border: none;
+    color: #ffd700;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.sort-btn:hover {
+    transform: scale(1.3);
+    color: white;
+}
+
+/* Loader */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    font-size: 20px;
+    color: #fff;
+}
+
+.spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #ffcc00;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+/* Animație pentru spinner */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .main-title {
+        font-size: 26px;
+    }
+
+    .search-input {
+        width: 90%;
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .astronaut-line {
+        font-size: 14px;
+    }
+}

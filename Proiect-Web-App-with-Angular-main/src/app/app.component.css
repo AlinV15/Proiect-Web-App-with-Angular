@@ -1,0 +1,13 @@
+/* Containerul principal al aplicației cu un fundal semitransparent */
+.main {
+    background: rgba(0, 0, 0, 0.7);
+    /* Fundal mai închis, dar semitransparent */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    /* Umbre mai evidente pentru efect cosmic */
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-y: auto;
+}
