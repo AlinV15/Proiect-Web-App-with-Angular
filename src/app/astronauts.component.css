@@ -1,0 +1,134 @@
+/* Stiluri pentru tabelul cu astronauți */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: white;
+    /* Text alb pentru vizibilitate */
+}
+
+/* Antetul tabelului */
+th,
+td {
+    padding: 12px 16px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #d1d1d1;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Fundal închis pentru antet */
+    font-size: 18px;
+}
+
+td {
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Fundal pentru celule */
+}
+
+/* Efecte de hover pentru rândurile de astronaut */
+.astronaut-line {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fundal mai închis */
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow: 0 1px 10px rgba(255, 255, 255, 0.3);
+    /* Efect luminos pe margini */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.astronaut-line:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fundal mai închis când treci cu mouse-ul */
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.5);
+    /* Efect de glow la hover */
+}
+
+/* Stiluri pentru săgețile de sortare */
+/* Stiluri pentru loaderul (spinner) centrat */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Se asigură că loaderul este centrat pe întreaga pagină */
+    font-size: 20px;
+    color: #fff;
+}
+
+.loading .spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #ffcc00;
+    /* Culoare galbenă pentru a se potrivi cu tema cosmică */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animație pentru spinner */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Container pentru numele navei și săgeata de sortare */
+.craft-container {
+    display: flex;
+    /* Folosește flexbox pentru alinierea pe orizontală */
+    align-items: center;
+    /* Centrează elementele pe axa verticală */
+    justify-content: flex-start;
+    /* Aliniază elementele la începutul liniei */
+}
+
+/* Numele navei */
+.craft-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 8px;
+    /* Adaugă un spațiu între text și săgeată */
+}
+
+/* Stiluri pentru săgețile de sortare */
+.sort-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ffcc00;
+    /* Aur pentru săgeți */
+    transition: all 0.3s ease;
+}
+
+.sort-btn:hover {
+    color: #fff;
+    /* Albe pentru hover */
+    transform: scale(1.1);
+    /* Efect de mărire la hover */
+}
+
+/* Săgețile vor fi un pic mai mari */
+.sort-btn:before {
+    /* Săgeata sus */
+    display: inline-block;
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.sort-btn:active:before {
+    transform: rotate(180deg);
+    /* Rotire la apăsare pentru a arăta săgeata în jos */
+}

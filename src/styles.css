@@ -1,0 +1,37 @@
+/* Fundal cu efect de spațiu pentru întreaga pagină */
+body {
+background-image: url('/space.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Adăugăm o sclipire subtilă în fundal pentru un efect cosmic */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://cdn.pixabay.com/photo/2015/09/18/19/03/starry-sky-942980_960_720.jpg') repeat;
+    opacity: 0.2;
+    animation: shimmer 1.5s infinite linear;
+    z-index: -1;
+}
